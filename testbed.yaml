@@ -2,8 +2,6 @@ testbed:
   name: Multi Platform Network
   credentials:
     default:
-      login_prompt: 'login:'
-      password_prompt: 'Password:'
       username: '%ENV{PYATS_USERNAME}'
       password: '%ENV{PYATS_PASSWORD}'
     enable:
@@ -14,17 +12,6 @@ testbed:
       password: cisco
 
 devices:
-  terminal_server:
-    os: linux
-    type: linux
-    credentials:
-      default: 
-        username: '%ENV{VIRL2_USER}'
-        password: '%ENV{VIRL2_PASS}'
-    connections:
-      cli:
-        protocol: ssh
-        ip: 10.10.20.161
 
   internet-rtr01:
     os: iosxe
