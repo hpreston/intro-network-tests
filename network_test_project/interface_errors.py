@@ -50,26 +50,6 @@ class CommonSetup(aetest.CommonSetup):
             logger.error("Unable to connect to all devices")
 
 
-# class verify_connected(aetest.Testcase):
-#     """verify_connected
-
-#     Ensure successful connection to all devices in testbed.
-
-#     """
-
-#     @aetest.test
-#     def test(self, testbed, steps):
-#         for device_name, device in testbed.devices.items():
-#             with steps.start(
-#                 f"Test Connection Status of {device_name}", continue_=True
-#             ) as step:
-#                 if device.connected:
-#                     logger.info(f"{device_name} connected status: {device.connected}")
-#                 else:
-#                     logger.error(f"{device_name} connected status: {device.connected}")
-#                     step.failed()
-
-
 class interface_errors(aetest.Testcase):
     """interface_errors
 
