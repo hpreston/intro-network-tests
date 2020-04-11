@@ -87,21 +87,25 @@ class interface_errors(aetest.Testcase):
                     ) as interface_step:
 
                         # Verify that this interface has "counters" (Loopbacks Lack Counters on some platforms)
-                        if "counters" in interface.keys(): 
+                        if "counters" in interface.keys():
                             # Loop over every counter to check, looking for values greater than 0
                             for counter in self.counter_error_keys:
                                 # Verify that the counter is available for this device
-                                if counter in interface["counters"].keys(): 
+                                if counter in interface["counters"].keys():
                                     if interface["counters"][counter] > 0:
                                         interface_step.failed(
                                             f'Device {device_name} Interface {interface_name} has a count of {interface["counters"][counter]} for {counter}'
                                         )
-                                else: 
+                                else:
                                     # if the counter not supported, log that it wasn't checked
-                                    logger.info(f'Device {device_name} Interface {interface_name} missing {counter}')
-                        else: 
+                                    logger.info(
+                                        f"Device {device_name} Interface {interface_name} missing {counter}"
+                                    )
+                        else:
                             # If the interface has no counters, mark as skipped
-                            interface_step.skipped(f'Device {device_name} Interface {interface_name} missing counters')
+                            interface_step.skipped(
+                                f"Device {device_name} Interface {interface_name} missing counters"
+                            )
 
 
 class CommonCleanup(aetest.CommonCleanup):

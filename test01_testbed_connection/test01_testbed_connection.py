@@ -49,7 +49,7 @@ class verify_connected(aetest.Testcase):
 
     @aetest.test
     def test(self, testbed, steps):
-        # Loop over every device in the testbed 
+        # Loop over every device in the testbed
         for device_name, device in testbed.devices.items():
             with steps.start(
                 f"Test Connection Status of {device_name}", continue_=True
