@@ -10,6 +10,8 @@ testbed:
       password: '%ENV{PYATS_PASSWORD}'
     line:
       password: '%ENV{PYATS_PASSWORD}'
+    linux: 
+      password: cisco
 
 devices:
   terminal_server:
@@ -34,8 +36,8 @@ devices:
       a:
         protocol: ssh
         ip: 10.10.20.181
-        protocol: telnet
-        ip: 10.10.20.181
+        arguments: 
+          connection_timeout: 10
 
 
   internet-host01:
@@ -92,6 +94,7 @@ devices:
         ip: 10.10.20.175
 
   dist-rtr02:
+    # alias: uut
     os: iosxe
     type: router
     series: csr1000v
@@ -103,6 +106,7 @@ devices:
         ip: 10.10.20.176
 
   dist-sw01:
+    alias: uut
     os: nxos
     type: switch
     series: n9k
@@ -127,10 +131,6 @@ devices:
   inside-host01:
     os: linux
     type: server
-    tacacs:
-      username: cisco
-    passwords:
-      linux: cisco
     connections:
       defaults:
         class: unicon.Unicon
@@ -141,10 +141,6 @@ devices:
   inside-host02:
     os: linux
     type: server
-    tacacs:
-      username: cisco
-    passwords:
-      linux: cisco
     connections:
       defaults:
         class: unicon.Unicon
