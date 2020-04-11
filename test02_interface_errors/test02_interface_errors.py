@@ -99,18 +99,29 @@ class interface_errors(aetest.Testcase):
             with steps.start(
                 f"Looking for Interface Errors on {device_name}", continue_=True
             ) as device_step:
+
                 # Loop over every interface that was learnt
                 for interface_name, interface in interfaces.items():
                     with device_step.start(
                         f"Checking Interface {interface_name}", continue_=True
                     ) as interface_step:
-                        logger.info(f"{device_name} {interface_name}")
-                        # Loop over every counter to check, looking for values greater than 0
-                        for counter in self.counter_error_keys:
-                            if interface["counters"][counter] > 0:
-                                interface_step.failed(
-                                    f'Device {device_name} Interface {interface_name} has a count of {interface["counters"][counter]} for {counter}'
-                                )
+
+                        # Verify that this interface has "counters" (Loopbacks Lack Counters on some platforms)
+                        if "counters" in interface.keys(): 
+                            # Loop over every counter to check, looking for values greater than 0
+                            for counter in self.counter_error_keys:
+                                # Verify that the counter is available for this device
+                                if counter in interface["counters"].keys(): 
+                                    if interface["counters"][counter] > 0:
+                                        interface_step.failed(
+                                            f'Device {device_name} Interface {interface_name} has a count of {interface["counters"][counter]} for {counter}'
+                                        )
+                                else: 
+                                    # if the counter not supported, log that it wasn't checked
+                                    logger.info(f'Device {device_name} Interface {interface_name} missing {counter}')
+                        else: 
+                            # If the interface has no counters, mark as skipped
+                            interface_step.skipped(f'Device {device_name} Interface {interface_name} missing counters')
 
 
 class CommonCleanup(aetest.CommonCleanup):
