@@ -88,6 +88,10 @@ class interface_errors(aetest.Testcase):
 
                         # Verify that this interface has "counters" (Loopbacks Lack Counters on some platforms)
                         if "counters" in interface.keys():
+                            # Demonstration: Updating a test to log more details
+                            #   Uncomment the below logger.info line to write to the log the contents of the "counters" key
+                            # logger.info(f"Device {device_name} Interface {interface_name} counters: {interface['counters']}")
+
                             # Loop over every counter to check, looking for values greater than 0
                             for counter in self.counter_error_keys:
                                 # Verify that the counter is available for this device
