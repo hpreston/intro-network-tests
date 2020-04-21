@@ -40,7 +40,30 @@ pip install pyats[full]
 
 The folder [`network_test_project`](network_test_project) will check that all devices in the testbed are reachable, and that interfaces aren't showing any errors.  
 
-Run the test with
+The [`testbed.yaml`](testbed.yaml) file is setup to look in the environment variables for the user/password for devices.  
+
+```yaml
+testbed:
+  name: Multi Platform Network
+  credentials:
+    default:
+      username: '%ENV{PYATS_USERNAME}'
+      password: '%ENV{PYATS_PASSWORD}'
+    enable:
+      password: '%ENV{PYATS_PASSWORD}'
+    line:
+      password: '%ENV{PYATS_PASSWORD}'
+    linux: 
+      password: '%ENV{PYATS_PASSWORD}'
+```
+
+As the Sandbox is a sample network, the values for these are included in the [`pyats_env`](pyats_env) file in the repository.  "source" it to set these variables. 
+
+```
+source pyats_env
+```
+
+Now you can run the test with
 
 ```
 pyats run job network_test_project/network_test_job.py --testbed testbed.yaml
@@ -48,3 +71,4 @@ pyats run job network_test_project/network_test_job.py --testbed testbed.yaml
 
 > Note: you'll need to be VPN connected to the DevNet Sandbox to run the test
 
+To checkout the results and logs from the test, use the `pyats logs view` function to open a browser view.  

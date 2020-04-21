@@ -9,7 +9,7 @@ testbed:
     line:
       password: '%ENV{PYATS_PASSWORD}'
     linux: 
-      password: cisco
+      password: '%ENV{PYATS_PASSWORD}'
 
 devices:
 
