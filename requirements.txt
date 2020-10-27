@@ -12,7 +12,7 @@ cffi==1.14.0
 chardet==3.0.4
 click==7.1.1
 cookiecutter==1.7.0
-cryptography==2.9
+cryptography==3.2
 dill==0.3.1.1
 distro==1.5.0
 entrypoints==0.3
