@@ -1,6 +1,8 @@
 # intro-network-tests
 Demos, examples, content for the talk "Introduction to Writing Network Tests with pyATS"
 
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/hpreston/intro-network-tests)
+
 ## Resources 
 
 * [pyATS Homepage](https://developer.cisco.com/pyats/)
